@@ -1,0 +1,17 @@
+On Master 
+
+
+After the Cluster creation and Workers Node have been joined and the Networking between them is also done.
+
+Install helm --classic via snap on master.
+
+
+# Add/Update Helm repos
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+
+# Install NGINX Ingress Controller
+helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
+  --namespace ingress-nginx --create-namespace \
+  --set controller.resources.requests.cpu=200m \
+  --set controller.resources.requests.memory=256Mi
